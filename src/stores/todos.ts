@@ -11,15 +11,19 @@ interface State {
 export const useTodosStore = createStore<State>({
   state() {
     return {
-      todos: [],
+      todos: [
+        { id: 44, text: "oui", completed: false },
+        { id: 45, text: "non", completed: true },
+      ],
       nextToDoId: 1,
     };
   },
   mutations: {
     addTodo(state: State, todo: Todo) {
       state.todos.push(todo);
+      state.nextToDoId++;
     },
-    toggleComplete(state: State, id: number) {
+    toggleCompleteTodo(state: State, id: number) {
       const todo = state.todos.find((elem) => elem.id === id);
       if (todo) {
         todo.completed = !todo.completed;
@@ -28,16 +32,25 @@ export const useTodosStore = createStore<State>({
     removeTodo(state: State, id: number) {
       state.todos = state.todos.filter((elem) => elem.id !== id);
     },
+    editTodo(state: State, todo: Todo) {
+      const toEdit = state.todos.find((elem) => elem.id === todo.id);
+      if (toEdit) {
+        toEdit.text = todo.text;
+      }
+    },
   },
   actions: {
     addTodo({ commit }: { commit: Commit }, todo: Todo) {
       commit("addTodo", todo);
     },
-    toggleTodo({ commit }: { commit: Commit }, todoId: number) {
-      commit("toggleTodo", todoId);
+    toggleCompleteTodo({ commit }: { commit: Commit }, todoId: number) {
+      commit("toggleCompleteTodo", todoId);
     },
     removeTodo({ commit }: { commit: Commit }, todoId: number) {
       commit("removeTodo", todoId);
+    },
+    editTodo({ commit }: { commit: Commit }, todoId: number) {
+      commit("editTodo", todoId);
     },
   },
   getters: {
