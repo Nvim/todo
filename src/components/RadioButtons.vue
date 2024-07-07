@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const emit = defineEmits(["filter"]);
+// const emit = defineEmits(["filter"]);
+const emit = defineEmits<{
+  (e: "filter", value: string): void;
+}>();
 
 const filter = (e) => {
   emit("filter", e.target.value);

@@ -12,8 +12,9 @@ const editing: Ref<number> = ref(null);
 const editToDoText: Ref<string> = ref("");
 const radioFilter: Ref<string> = ref("");
 
-const removeTodo = (id) => store.commit("removeTodo", id);
-const toggleCompleteTodo = (id) => store.dispatch("toggleCompleteTodo", id);
+const removeTodo = (id: number) => store.commit("removeTodo", id);
+const toggleCompleteTodo = (id: number) =>
+  store.dispatch("toggleCompleteTodo", id);
 const editTodo = (todo: Todo) => {
   if (editToDoText.value.trim()) {
     todo.text = editToDoText.value.trim();
@@ -23,12 +24,12 @@ const editTodo = (todo: Todo) => {
   }
 };
 
-const handleRadioFilter = (filter) => {
+const handleRadioFilter = (filter: Event) => {
   radioFilter.value = filter;
 };
 
 const filteredTodos: Array<Todo> = computed(() => {
-  let todos = store.state.todos;
+  let todos: Todo = store.state.todos;
 
   if (radioFilter.value === "completed") {
     todos = todos.filter((elem) => elem.completed === true);

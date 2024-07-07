@@ -10,7 +10,7 @@ const router = useRouter();
 const newTodoText: Ref<string> = ref("");
 
 const addToDo = () => {
-  const newTodoId = store.state.nextToDoId;
+  const newTodoId: number = store.state.nextToDoId;
   const newTodo = {
     id: newTodoId,
     text: newTodoText.value.trim(),
