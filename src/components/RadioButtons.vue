@@ -7,35 +7,44 @@ const filter = (e) => {
 </script>
 
 <template>
-  <div class="mx-4 flex">
-    <input
-      id="all"
-      type="radio"
-      value="all"
-      name="radio"
-      checked
-      @change="filter"
-    />
-    <label for="all" class="text-sm px-3">All</label>
+  <div class="form-control">
+    <label for="all" class="label cursor-pointer">
+      <span class="label-text pr-2">All</span>
+      <input
+        id="all"
+        type="radio"
+        value="all"
+        name="radio"
+        class="radio radio-accent"
+        checked
+        @change="filter"
+      />
+    </label>
   </div>
-  <div class="mx-4 flex">
-    <input
-      id="completed"
-      type="radio"
-      value="completed"
-      name="radio"
-      @change="filter"
-    />
-    <label for="completed" class="text-sm px-3">Completed</label>
+  <div class="form-control">
+    <label for="completed" class="label cursor-pointer">
+      <span class="label-text pr-2">Completed</span>
+      <input
+        id="completed"
+        type="radio"
+        value="completed"
+        name="radio"
+        class="radio radio-accent"
+        @change="filter"
+      />
+    </label>
   </div>
-  <div class="mx-4 flex">
-    <input
-      id="pending"
-      type="radio"
-      value="pending"
-      name="radio"
-      @change="filter"
-    />
-    <label for="pending" class="text-sm px-3">Pending</label>
+  <div class="form-control">
+    <label for="pending" class="label cursor-pointer">
+      <span class="label-text pr-2">Pending</span>
+      <input
+        id="pending"
+        type="radio"
+        value="pending"
+        name="radio"
+        class="radio radio-accent"
+        @change="filter"
+      />
+    </label>
   </div>
 </template>

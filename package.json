@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/eslint__js": "^8.42.3",
+    "theme-change": "^2.5.0",
     "typescript-eslint": "^7.15.0",
     "vue": "^3.4.29",
     "vue-router": "^4.4.0",
@@ -19,6 +20,7 @@
     "@types/node": "^20.14.10",
     "@vitejs/plugin-vue": "^5.0.5",
     "autoprefixer": "^10.4.19",
+    "daisyui": "^4.12.10",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-vue": "^9.27.0",
     "postcss": "^8.4.39",

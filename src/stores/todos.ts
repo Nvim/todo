@@ -12,10 +12,10 @@ export const useTodosStore = createStore<State>({
   state() {
     return {
       todos: [
-        { id: 44, text: "oui", completed: false },
-        { id: 45, text: "non", completed: true },
+        { id: 1, text: "Test", completed: false },
+        { id: 2, text: "Test #2", completed: true },
       ],
-      nextToDoId: 1,
+      nextToDoId: 3,
     };
   },
   mutations: {

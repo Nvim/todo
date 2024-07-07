@@ -22,31 +22,30 @@ const addToDo = () => {
 </script>
 
 <template>
-  <div class="text-2xl font-extrabold m-4 w-full">Todo Form</div>
-  <div>
-    <button
-      class="bg-blue-300 rounded-lg p-2 hover:bg-blue-500"
-      @click="router.push('/')"
-    >
-      Back to list
-    </button>
-  </div>
-  <div class="m-2">
-    <input
-      v-model="newTodoText"
-      type="text"
-      placeholder="What do you have to do?"
-      @keyup.enter="addToDo"
-    />
-  </div>
-  <div class="m-2">
-    <button
-      class="bg-blue-300 rounded-lg p-2"
-      :class="{ 'hover:bg-blue-500': newTodoText.trim() }"
-      :disabled="!newTodoText.trim()"
-      @click="addToDo"
-    >
-      Add
-    </button>
+  <div class="flex flex-col space-y-6 items-center justify-center h-3/5">
+    <div class="text-2xl font-extrabold">
+      <span> Todo Form </span>
+    </div>
+    <div class="">
+      <textarea
+        v-model="newTodoText"
+        class="textarea tertarea-primary"
+        type="text"
+        placeholder="What do you have to do?"
+        @keyup.enter="addToDo"
+      />
+    </div>
+    <div class="flex space-x-4 items-center justify-center">
+      <button
+        class="btn btn-primary"
+        :disabled="!newTodoText.trim()"
+        @click="addToDo"
+      >
+        Add
+      </button>
+      <button class="btn btn-primary" @click="router.push('/')">
+        Back to list
+      </button>
+    </div>
   </div>
 </template>
