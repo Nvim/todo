@@ -27,20 +27,11 @@ const addToDo = () => {
       <span> Todo Form </span>
     </div>
     <div class="">
-      <textarea
-        v-model="newTodoText"
-        class="textarea tertarea-primary"
-        type="text"
-        placeholder="What do you have to do?"
-        @keyup.enter="addToDo"
-      />
+      <textarea v-model="newTodoText" class="textarea tertarea-primary" type="text"
+        placeholder="What do you have to do?" @keyup.enter="addToDo" />
     </div>
     <div class="flex space-x-4 items-center justify-center">
-      <button
-        class="btn btn-primary"
-        :disabled="!newTodoText.trim()"
-        @click="addToDo"
-      >
+      <button class="btn btn-primary" :disabled="!newTodoText.trim()" @click="addToDo">
         Add
       </button>
       <button class="btn btn-primary" @click="router.push('/')">

@@ -1,10 +1,9 @@
 import { Todo } from "@/models/Todo.ts";
-import { createStore } from "vuex";
 import { Commit } from "vuex/types/index.js";
 
 // Todo list + Next ID
 interface State {
-  todos: Todo[];
+  todos: Array<Todo>;
   nextToDoId: number;
 }
 

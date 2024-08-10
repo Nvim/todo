@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { Todo } from "@/models/Todo.ts";
 import { computed, ref } from "vue";
-import type { Ref } from "vue";
-import { useStore } from "vuex";
+import type { ComputedRef, Ref } from "vue";
 import { useRouter } from "vue-router";
 import RadioButtons from "./RadioButtons.vue";
 
 const store = useStore();
 const router = useRouter();
-const editing: Ref<number> = ref(null);
+const editing: Ref<number> = ref(-1);
 const editToDoText: Ref<string> = ref("");
 const radioFilter: Ref<string> = ref("");
 
@@ -20,16 +19,16 @@ const editTodo = (todo: Todo) => {
     todo.text = editToDoText.value.trim();
     store.dispatch("editTodo", todo);
     editToDoText.value = "";
-    editing.value = null;
+    editing.value = -1;
   }
 };
 
-const handleRadioFilter = (filter: Event) => {
+const handleRadioFilter = (filter: string) => {
   radioFilter.value = filter;
 };
 
-const filteredTodos: Array<Todo> = computed(() => {
-  let todos: Todo = store.state.todos;
+const filteredTodos: ComputedRef<Todo[]> = computed(() => {
+  let todos: Todo[] = store.state.todos;
 
   if (radioFilter.value === "completed") {
     todos = todos.filter((elem) => elem.completed === true);
@@ -77,40 +76,27 @@ const filteredTodos: Array<Todo> = computed(() => {
           <td>
             <!-- checkbox -->
             <label>
-              <input
-                type="checkbox"
-                class="checkbox"
-                :checked="todo.completed"
-                @change="toggleCompleteTodo(todo.id)"
-              />
+              <input type="checkbox" class="checkbox" :checked="todo.completed" @change="toggleCompleteTodo(todo.id)" />
             </label>
           </td>
           <!-- Desc/Edit -->
           <td>
             <span v-if="editing === todo.id">
-              <textarea
-                v-model="editToDoText"
-                class="textarea textarea-primary textarea-ghost textarea-xs max-w-xs"
-                :placeholder="todo.text"
-                @keyup.enter="editTodo(todo)"
-              />
+              <textarea v-model="editToDoText" class="textarea textarea-primary textarea-ghost textarea-xs max-w-xs"
+                :placeholder="todo.text" @keyup.enter="editTodo(todo)" />
             </span>
             <span v-else>{{ todo.text }}</span>
           </td>
           <!-- Edit button(s) -->
           <td>
-            <button
-              v-if="!(editing === todo.id)"
-              class="btn btn-ghost btn-xs"
-              @click="editing = todo.id"
-            >
+            <button v-if="!(editing === todo.id)" class="btn btn-ghost btn-xs" @click="editing = todo.id">
               Edit
             </button>
             <div v-else class="flex space-x-2">
               <button class="btn btn-ghost btn-xs" @click="editTodo(todo)">
                 Save
               </button>
-              <button class="btn btn-ghost btn-xs" @click="editing = null">
+              <button class="btn btn-ghost btn-xs" @click="editing = -1">
                 Cancel
               </button>
             </div>
