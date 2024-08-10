@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import type { ComputedRef, Ref } from "vue";
 import { useRouter } from "vue-router";
 import RadioButtons from "./RadioButtons.vue";
+import { useStore } from "vuex";
 
 const store = useStore();
 const router = useRouter();
